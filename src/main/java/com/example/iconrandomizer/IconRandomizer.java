@@ -11,6 +11,7 @@ import com.velocitypowered.api.proxy.server.ServerPing;
 import com.velocitypowered.api.util.Favicon;
 import org.slf4j.Logger;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.DirectoryStream;
@@ -37,6 +38,7 @@ public final class IconRandomizer {
     private final Path serverRoot;
 
     private volatile List<Favicon> icons = Collections.emptyList();
+    private final AtomicInteger nextIndex = new AtomicInteger();
 
     @Inject
     public IconRandomizer(ProxyServer proxy, Logger logger, @DataDirectory Path dataDirectory) {
@@ -69,7 +71,8 @@ public final class IconRandomizer {
             return;
         }
 
-        Favicon favicon = currentIcons.get(ThreadLocalRandom.current().nextInt(currentIcons.size()));
+        int idx = nextIndex.getAndIncrement();
+        Favicon favicon = currentIcons.get(Math.floorMod(idx, currentIcons.size()));
         ServerPing ping = event.getPing();
         event.setPing(ping.asBuilder().favicon(favicon).build());
     }

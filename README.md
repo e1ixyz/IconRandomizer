@@ -3,7 +3,7 @@
 Simple Velocity plugin that swaps the server icon on every server list ping.
 
 ## Features
-- Picks a random favicon for each ping (no caching between refreshes).
+- Rotates through the favicons in order, one per ping (round-robin), so the icon changes on every refresh.
 - Reads icons from a folder or an explicit list of files.
 - Lightweight: no commands, no dependencies beyond Velocity API.
 
@@ -35,5 +35,5 @@ Notes:
 
 ## Usage
 - Place your PNG icons in the configured folder (or list them in `icon-files`).
-- Each time the server list refreshes, a random icon is served.
+- Each time the server list refreshes, the next icon in the pool is served (round-robin order).
 - Hot reload: changing files in the folder updates the pool on next startup; dynamic reloading is not implemented.

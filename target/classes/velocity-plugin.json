@@ -1,1 +1,8 @@
-{"id":"iconrandomizer","name":"IconRandomizer","version":"1.0.0","authors":["e1ixyz"],"dependencies":[],"main":"com.example.iconrandomizer.IconRandomizer"}
+{
+  "id": "iconrandomizer",
+  "name": "IconRandomizer",
+  "version": "1.0.0",
+  "description": "Randomizes the server icon on each ping.",
+  "authors": ["e1ixyz"],
+  "main": "com.example.iconrandomizer.IconRandomizer"
+}
